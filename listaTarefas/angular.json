@@ -26,9 +26,10 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              "src/assets",
               {
                 "glob": "**/*",
-                "input": "assets"
+                "input": "src/assets"
               }
             ],
             "styles": [
@@ -92,7 +93,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "assets"
+                "input": "src/assets",
+                "output": "assets"
               }
             ],
             "styles": [
