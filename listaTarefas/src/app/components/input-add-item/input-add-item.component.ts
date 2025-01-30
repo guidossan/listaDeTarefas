@@ -14,7 +14,7 @@ export class InputAddItemComponent {
   #cdr = inject(ChangeDetectorRef);
 
   @ViewChild('inputText') public inputText!: ElementRef;
-  @Output() public outputListItens = new EventEmitter<IListItems>()
+  @Output() public outputAddListItem = new EventEmitter<IListItems>()
   public focusAndAddItem(value: string){
     if(value){
       this.#cdr.detectChanges();
@@ -25,7 +25,7 @@ export class InputAddItemComponent {
       const timestamp = dataAtual.getTime();
       const id = `ID ${timestamp}`
 
-      this.outputListItens.emit({
+      this.outputAddListItem.emit({
         id,
         checked: false,
         value,
