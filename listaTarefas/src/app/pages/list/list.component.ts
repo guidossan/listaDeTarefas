@@ -29,4 +29,9 @@ export class ListComponent {
     localStorage.setItem('@my-list', JSON.stringify([...this.#setListItens(),value]));
     return this.#setListItens.set(this.#parseItens())
   }
+
+  public deleteAllItens(){
+    localStorage.removeItem('@my-list');
+    return this.#setListItens.set(this.#parseItens());
+  }
 }
