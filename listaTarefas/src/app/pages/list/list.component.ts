@@ -3,6 +3,7 @@ import { Component, signal } from '@angular/core';
 import { InputAddItemComponent } from '../../components/input-add-item/input-add-item.component';
 import { IListItems } from '../../interface/IListItems.interface';
 import { ListItemComponentComponent } from '../../components/list-item-component/list-item-component.component';
+import { ELocalStorage } from '../../enum/ELocalStorage.enum';
 
 @Component({
   selector: 'app-list',
@@ -19,7 +20,7 @@ export class ListComponent {
 
   #parseItens(){
     if (typeof localStorage !== 'undefined') {
-      return JSON.parse(localStorage.getItem('@my-list') || '[]');
+      return JSON.parse(localStorage.getItem(ELocalStorage.MY_LIST) || '[]');
     }
     return [];
   }
@@ -27,7 +28,7 @@ export class ListComponent {
 
   public getInputAndAddItem(value: IListItems){
 
-    localStorage.setItem('@my-list', JSON.stringify([...this.#setListItens(),value]));
+    localStorage.setItem(ELocalStorage.MY_LIST, JSON.stringify([...this.#setListItens(),value]));
     return this.#setListItens.set(this.#parseItens())
   }
 
@@ -42,7 +43,7 @@ export class ListComponent {
       });
       return oldValue;
     });
-    return localStorage.setItem('@my-list', JSON.stringify(this.#setListItens()))
+    return localStorage.setItem(ELocalStorage.MY_LIST, JSON.stringify(this.#setListItens()))
   }
 
   public listItemsStage(value: 'pending' | 'completed'){
@@ -68,16 +69,16 @@ export class ListComponent {
       });
       return oldValue;
     });
-    return localStorage.setItem('@my-list', JSON.stringify(this.#setListItens()))
+    return localStorage.setItem(ELocalStorage.MY_LIST, JSON.stringify(this.#setListItens()))
   }
   public deleteAllItens(){
-    localStorage.removeItem('@my-list');
+    localStorage.removeItem(ELocalStorage.MY_LIST);
     return this.#setListItens.set(this.#parseItens());
   }
   public deleteItemText(id: string){
     this.#setListItens.update((oldValue: IListItems[])=>{
       return oldValue.filter((res) => res.id !==id);
     })
-    return localStorage.setItem('@my-list', JSON.stringify(this.#setListItens()))
+    return localStorage.setItem(ELocalStorage.MY_LIST, JSON.stringify(this.#setListItens()))
   }
 }
