@@ -31,6 +31,32 @@ export class ListComponent {
     return this.#setListItens.set(this.#parseItens())
   }
 
+  public updateItemCheckbox(newItem: {checked: boolean; id: string}){
+    this.#setListItens.update((oldValue: IListItems[]) => {
+      oldValue.filter(res => {
+        if(res.id === newItem.id){
+          res.checked = newItem.checked;
+          return res;
+        }
+        return res;
+      });
+      return oldValue;
+    });
+    return localStorage.setItem('@my-list', JSON.stringify(this.#setListItens()))
+  }
+
+  public listItemsStage(value: 'pending' | 'completed'){
+    return this.getListItens().filter((res: IListItems) => {
+      if(value === 'pending'){
+        return !res.checked;
+      }
+      if(value === 'completed'){
+        return res.checked;
+      }
+      return res;
+    })
+  }
+
   public deleteAllItens(){
     localStorage.removeItem('@my-list');
     return this.#setListItens.set(this.#parseItens());
