@@ -57,10 +57,6 @@ export class ListComponent {
     })
   }
 
-  public deleteAllItens(){
-    localStorage.removeItem('@my-list');
-    return this.#setListItens.set(this.#parseItens());
-  }
   public updateItemText(newItem:{value: string, id: string}){
     this.#setListItens.update((oldValue: IListItems[]) => {
       oldValue.filter((res) => {
@@ -72,6 +68,16 @@ export class ListComponent {
       });
       return oldValue;
     });
+    return localStorage.setItem('@my-list', JSON.stringify(this.#setListItens()))
+  }
+  public deleteAllItens(){
+    localStorage.removeItem('@my-list');
+    return this.#setListItens.set(this.#parseItens());
+  }
+  public deleteItemText(id: string){
+    this.#setListItens.update((oldValue: IListItems[])=>{
+      return oldValue.filter((res) => res.id !==id);
+    })
     return localStorage.setItem('@my-list', JSON.stringify(this.#setListItens()))
   }
 }

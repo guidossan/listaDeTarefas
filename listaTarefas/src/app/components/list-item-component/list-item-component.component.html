@@ -13,6 +13,10 @@
       autofocus
       (input)="updateItemText(inputValue.value, item.id)"
     />
-    <button class="btn btn-danger-circle" title="Delete este item"></button>
+    <button
+      (click)="deleteItemText(item.id)"
+      class="btn btn-danger-circle"
+      title="Delete este item"
+    ></button>
   </label>
 }

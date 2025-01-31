@@ -28,4 +28,9 @@ export class ListItemComponentComponent {
   public updateItemText(value: string, id: string){
     return this.outPutUpdateItemText.emit({value, id});
   }
+  @Output() public outPutDeleteItemText = new EventEmitter<string>();
+
+  public deleteItemText(id: string){
+    return this.outPutDeleteItemText.emit(id);
+  }
 }

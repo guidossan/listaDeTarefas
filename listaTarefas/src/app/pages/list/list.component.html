@@ -25,12 +25,14 @@
       <app-list-item-component
       (outPutUpdateItemText)="updateItemText($event)"
       (outPutUpdateItemCheckbox)="updateItemCheckbox($event)"
+      (outPutDeleteItemText)="deleteItemText($event)"
       [inputListItems]="listItemsStage('pending')"
-       />
+      />
     }
     @if(listItemsStage('completed').length){
       <h2>Concluidas</h2>
       <app-list-item-component
+      (outPutDeleteItemText)="deleteItemText($event)"
       (outPutUpdateItemText)="updateItemText($event)"
       (outPutUpdateItemCheckbox)="updateItemCheckbox($event)"
       [inputListItems]="listItemsStage('completed')"
