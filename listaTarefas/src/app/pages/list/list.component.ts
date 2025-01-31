@@ -33,7 +33,7 @@ export class ListComponent {
 
   public updateItemCheckbox(newItem: {checked: boolean; id: string}){
     this.#setListItens.update((oldValue: IListItems[]) => {
-      oldValue.filter(res => {
+      oldValue.filter((res) => {
         if(res.id === newItem.id){
           res.checked = newItem.checked;
           return res;
@@ -60,5 +60,18 @@ export class ListComponent {
   public deleteAllItens(){
     localStorage.removeItem('@my-list');
     return this.#setListItens.set(this.#parseItens());
+  }
+  public updateItemText(newItem:{value: string, id: string}){
+    this.#setListItens.update((oldValue: IListItems[]) => {
+      oldValue.filter((res) => {
+        if(res.id === newItem.id){
+          res.value = newItem.value;
+          return res;
+        }
+        return res;
+      });
+      return oldValue;
+    });
+    return localStorage.setItem('@my-list', JSON.stringify(this.#setListItens()))
   }
 }

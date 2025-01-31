@@ -21,4 +21,11 @@ export class ListItemComponentComponent {
   public updateItemCheckbox(checked: boolean, id: string){
     return this.outPutUpdateItemCheckbox.emit({checked, id});
   }
+  @Output() public outPutUpdateItemText = new EventEmitter<{
+    value: string; id: string;
+  }>();
+
+  public updateItemText(value: string, id: string){
+    return this.outPutUpdateItemText.emit({value, id});
+  }
 }

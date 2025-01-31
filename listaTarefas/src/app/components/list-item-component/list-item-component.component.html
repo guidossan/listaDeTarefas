@@ -7,10 +7,11 @@
     />
     <input
       type="text"
-      #inoutValue [id]="item.id"
-      [value]="item.value"
+      #inputValue [value]="item.value"
+      [id]="item.id"
       placeholder="Adicione um valor"
       autofocus
+      (input)="updateItemText(inputValue.value, item.id)"
     />
     <button class="btn btn-danger-circle" title="Delete este item"></button>
   </label>
