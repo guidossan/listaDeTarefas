@@ -2,11 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { InputAddItemComponent } from '../../components/input-add-item/input-add-item.component';
 import { IListItems } from '../../interface/IListItems.interface';
+import { ListItemComponentComponent } from '../../components/list-item-component/list-item-component.component';
 
 @Component({
   selector: 'app-list',
   standalone:true,
-  imports: [CommonModule,InputAddItemComponent],
+  imports: [CommonModule,InputAddItemComponent,ListItemComponentComponent],
   templateUrl: './list.component.html',
   styleUrl: './list.component.scss'
 })
