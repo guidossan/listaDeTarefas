@@ -15,8 +15,16 @@
 
   </div>
 }@else {
-  <app-input-add-item [inputListItems]="getListItens()" (outputAddListItem)="getInputAndAddItem($event)"/>
-  <main class="container"></main>
+  <app-input-add-item
+    [inputListItems]="getListItens()"
+    (outputAddListItem)="getInputAndAddItem($event)"
+  />
+  <main class="container">
+    <h2>Pendências</h2>
+    <app-list-item-component  [inputListItems]="getListItens()"/>
+    <h2>Concluidas</h2>
+    <app-list-item-component  [inputListItems]="getListItens()"/>
+  </main>
 
   <footer>
     <button
