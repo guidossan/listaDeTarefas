@@ -24,7 +24,9 @@ export class ListComponent {
     }
     return [];
   }
-
+  #updateLocalStorage(){
+    return localStorage.setItem(ELocalStorage.MY_LIST, JSON.stringify(this.#setListItens()))
+  }
 
   public getInputAndAddItem(value: IListItems){
 
@@ -43,7 +45,7 @@ export class ListComponent {
       });
       return oldValue;
     });
-    return localStorage.setItem(ELocalStorage.MY_LIST, JSON.stringify(this.#setListItens()))
+    this.#updateLocalStorage()
   }
 
   public listItemsStage(value: 'pending' | 'completed'){
@@ -69,7 +71,7 @@ export class ListComponent {
       });
       return oldValue;
     });
-    return localStorage.setItem(ELocalStorage.MY_LIST, JSON.stringify(this.#setListItens()))
+    this.#updateLocalStorage()
   }
   public deleteAllItens(){
     localStorage.removeItem(ELocalStorage.MY_LIST);
@@ -79,6 +81,6 @@ export class ListComponent {
     this.#setListItens.update((oldValue: IListItems[])=>{
       return oldValue.filter((res) => res.id !==id);
     })
-    return localStorage.setItem(ELocalStorage.MY_LIST, JSON.stringify(this.#setListItens()))
+    this.#updateLocalStorage()
   }
 }
