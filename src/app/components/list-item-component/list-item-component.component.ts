@@ -11,12 +11,12 @@ import { animate, keyframes, style, transition, trigger } from '@angular/animati
   styleUrl: './list-item-component.component.scss',
   animations: [
     trigger('trashAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(-20px)' }),
+        animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ]),
       transition(':leave', [
-        animate('500ms ease-in', keyframes([
-          style({ transform: 'translateY(0)', offset: 0 }),
-          style({ transform: 'translateY(100px)', opacity: 0.5, offset: 0.5 }),
-          style({ transform: 'translateY(200px)', opacity: 0, offset: 1 })
-        ]))
+        animate('300ms ease-in', style({ opacity: 0, transform: 'translateY(20px)' }))
       ])
     ])
   ]
