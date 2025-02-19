@@ -1,5 +1,5 @@
 @for(item of inputListItems; track item){
-  <label class="input-label-text" [for]="item.id">
+  <label class="input-label-text" [for]="item.id" [@trashAnimation]>
     <input
       type="checkbox"
       #inputCheckbox [checked]="item.checked"
